@@ -1,12 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import tasksReducer from './reducers';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+const rootReducer = (state = {}, action) => {
+  return {
+    tasks: tasksReducer(state.tasks, action),
+  };
+};
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+if (module.hot) {
+  module.hot.accept('./reducers', () => {
+    const nextTasks = require('./reducers').default;
+    store.replaceReducer(nextTasks);
+  });
+  module.hot.accept('./App', () => {
+    const NextApp = require('./App').default;
+    ReactDOM.render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <NextApp />
+        </Provider>
+      </React.StrictMode>,
+      document.getElementById('root')
+    );
+  });
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,25 +1,47 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
+import TasksPage from './components/TasksPage';
+import { createTask, editTask, fetchTasks } from './actions';
+import FlashMessage from './components/FlashMessage';
 
-function App() {
+const App = (props) => {
+  console.log(props);
+
+  const { dispatch } = props;
+
+  useEffect(() => {
+    console.log('App mounted');
+    dispatch(fetchTasks());
+  }, [dispatch]);
+
+  const onCreateTask = (title, description) => {
+    props.dispatch(createTask({ title, description }));
+  };
+
+  const onStatusChange = (id, status) => {
+    props.dispatch(editTask(id, { status }));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      {props.error && <FlashMessage message={props.error} />}
+
+      <div className="main-content">
+        <TasksPage
+          tasks={props.tasks}
+          onCreateTask={onCreateTask}
+          onStatusChange={onStatusChange}
+          isLoading={props.isLoading}
+        />
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => {
+  const { tasks, isLoading, error } = state.tasks;
+  return { tasks, isLoading, error };
+};
+
+export default connect(mapStateToProps)(App);
