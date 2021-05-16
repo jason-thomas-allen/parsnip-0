@@ -16,7 +16,7 @@ export default function tasks(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        tasks: action.payload.tasks,
+        tasks: action.payload,
       };
     }
     case 'FETCH_TASKS_FAILED': {
@@ -24,6 +24,11 @@ export default function tasks(state = initialState, action) {
         ...state,
         isLoading: false,
         error: action.payload.error,
+      };
+    }
+    case 'CREATE_TASK_STARTED': {
+      return {
+        ...state,
       };
     }
     case 'CREATE_TASK_SUCCEEDED': {

@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Learn Redux",
       "description": "The store, actions, and reducers, oh my!",
-      "status": "In Progress"
+      "status": "Completed"
     },
     {
       "id": 2,
@@ -16,12 +16,12 @@
       "id": 3,
       "title": "Create Facebook for dogs",
       "description": "The hottest new social network",
-      "status": "In Progress"
+      "status": "Completed"
     },
     {
       "title": "Hello",
       "description": "World",
-      "status": "To Do",
+      "status": "In Progress",
       "id": 4
     },
     {
@@ -33,8 +33,20 @@
     {
       "title": "Arse",
       "description": "Hole",
-      "status": "Completed",
+      "status": "In Progress",
       "id": 6
+    },
+    {
+      "title": "Ooh",
+      "description": "Nice",
+      "status": "In Progress",
+      "id": 7
+    },
+    {
+      "title": "Aye",
+      "description": "Lad",
+      "status": "In Progress",
+      "id": 8
     }
   ]
 }
