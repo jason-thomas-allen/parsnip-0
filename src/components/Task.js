@@ -21,6 +21,7 @@ const Task = (props) => {
       </div>
       <hr />
       <div className="task-body">{task.description}</div>
+      <div className="task-timer">{task.timer}s</div>
     </div>
   );
 };

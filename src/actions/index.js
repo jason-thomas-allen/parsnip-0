@@ -1,26 +1,32 @@
 import * as api from '../api';
 
-export const fetchTasks = () => {
-  return (dispatch) => {
-    dispatch(fetchTasksStarted());
-    api
-      .fetchTasks()
-      .then((resp) => {
-        setTimeout(() => {
-          dispatch(fetchTasksSucceeded(resp.data));
-        }, 2000);
-      })
-      .catch((err) => {
-        dispatch(fetchTasksFailed(err.message));
-      });
-  };
-};
+// export const fetchTasks = () => {
+//   return (dispatch) => {
+//     dispatch(fetchTasksStarted());
+//     api
+//       .fetchTasks()
+//       .then((resp) => {
+//         setTimeout(() => {
+//           dispatch(fetchTasksSucceeded(resp.data));
+//         }, 2000);
+//       })
+//       .catch((err) => {
+//         dispatch(fetchTasksFailed(err.message));
+//       });
+//   };
+// };
 
-export const fetchTasksStarted = () => {
+export const fetchTasks = () => {
   return {
     type: 'FETCH_TASKS_STARTED',
   };
 };
+
+// export const fetchTasksStarted = () => {
+//   return {
+//     type: 'FETCH_TASKS_STARTED',
+//   };
+// };
 
 export const fetchTasksSucceeded = (tasks) => {
   return {
@@ -58,12 +64,39 @@ export const editTaskSucceeded = (task) => {
   };
 };
 
+const progressTimerStart = (taskId) => {
+  return {
+    type: 'PROGRESS_TIMER_STARTED',
+    payload: { taskId },
+  };
+};
+
+const progressTimerStop = (taskId) => {
+  return {
+    type: 'PROGRESS_TIMER_STOPPED',
+    payload: { taskId },
+  };
+};
+
+export const progressTimerIncrement = (taskId) => {
+  return {
+    type: 'PROGRESS_TIMER_INCREMENT',
+    payload: { taskId },
+  };
+};
+
 export const editTask = (id, params = {}) => {
   return (dispatch, getState) => {
     const task = getTaskById(getState().tasks, id);
     const updatedTask = { ...task, ...params };
     api.editTask(id, updatedTask).then((resp) => {
       dispatch(editTaskSucceeded(resp.data));
+      debugger;
+      if (resp.data.status === 'In Progress') {
+        dispatch(progressTimerStart(resp.data.id));
+      } else {
+        dispatch(progressTimerStop(resp.data.id));
+      }
     });
   };
 };
