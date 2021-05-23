@@ -1,3 +1,10 @@
+# parsnip
+Sample app built from the very excellent book : [Redux in Action By Marc Garreau and Will Faurot](https://learning.oreilly.com/library/view/redux-in-action/9781617294976/)
+
+![image](https://user-images.githubusercontent.com/84612166/119245168-b37b4700-bba9-11eb-9034-3ae6228d944d.png)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
