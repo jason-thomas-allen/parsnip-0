@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import TaskList from './TaskList';
-import { TASK_STATUSES } from '../common';
 
 const TasksPage = (props) => {
   const renderTaskLists = () => {
-    return TASK_STATUSES.map((status) => {
-      const statusTasks = props.tasks.filter((task) => task.status === status);
+    const { onStatusChange, tasks } = props;
+
+    return Object.keys(tasks).map((status) => {
+      const tasksByStatus = tasks[status];
       return (
         <TaskList
+          key={status}
           status={status}
-          tasks={statusTasks}
-          onStatusChange={props.onStatusChange}
+          tasks={tasksByStatus}
+          onStatusChange={onStatusChange}
         />
       );
     });
@@ -46,9 +48,18 @@ const TasksPage = (props) => {
     resetForm();
   };
 
+  const onSearch = (e) => {
+    props.onSearch(e.target.value);
+  };
+
+  if (props.isLoading) {
+    return <div className="tasks-loading">Loading...</div>;
+  }
+
   return (
-    <div className="task-list">
-      <div className="task-list-header">
+    <div className="tasks">
+      <div className="tasks-header">
+        <input onChange={onSearch} type="text" placeholder="Search..." />
         <button className="button button-default" onClick={toggleForm}>
           + New Task
         </button>
@@ -74,7 +85,7 @@ const TasksPage = (props) => {
           </button>
         </form>
       )}
-      {props.isLoading && <div className="tasks-loading">Loading...</div>}
+
       <div className="task-lists">{renderTaskLists()}</div>
     </div>
   );

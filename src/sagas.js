@@ -34,6 +34,7 @@ function* takeLatestById(actionType, saga) {
 function* fetchTasks() {
   try {
     const { data } = yield call(api.fetchTasks);
+    yield delay(1000);
     yield put(fetchTasksSucceeded(data));
   } catch (e) {
     yield put(fetchTasksFailed(e.message));
