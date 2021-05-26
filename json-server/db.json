@@ -4,21 +4,21 @@
       "id": 1,
       "title": "Learn Redux",
       "description": "The store, actions, and reducers, oh my!",
-      "status": "To Do",
+      "status": "In Progress",
       "timer": 483
     },
     {
       "id": 2,
       "title": "Peace on Earth",
       "description": "No big deal.",
-      "status": "In Progress",
+      "status": "To Do",
       "timer": 0
     },
     {
       "id": 3,
       "title": "Create Facebook for dogs",
       "description": "The hottest new social network",
-      "status": "In Progress",
+      "status": "To Do",
       "timer": 0
     },
     {

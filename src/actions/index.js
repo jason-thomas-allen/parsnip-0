@@ -16,6 +16,13 @@ import * as api from '../api';
 //   };
 // };
 
+export const filterTasks = (searchTerm) => {
+  return {
+    type: 'FILTER_TASKS',
+    payload: { searchTerm },
+  };
+};
+
 export const fetchTasks = () => {
   return {
     type: 'FETCH_TASKS_STARTED',
