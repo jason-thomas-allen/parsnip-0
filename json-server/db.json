@@ -1,31 +1,87 @@
 {
+  "projects": [
+    {
+      "id": 1,
+      "name": "Short-Term Goals"
+    },
+    {
+      "id": 2,
+      "name": "Long-Term Goals"
+    }
+  ],
   "tasks": [
     {
       "id": 1,
       "title": "Learn Redux",
       "description": "The store, actions, and reducers, oh my!",
-      "status": "In Progress",
-      "timer": 483
+      "status": "To Do",
+      "timer": 86,
+      "projectId": 1
     },
     {
       "id": 2,
       "title": "Peace on Earth",
       "description": "No big deal.",
       "status": "To Do",
-      "timer": 0
+      "timer": 132,
+      "projectId": 2
     },
     {
       "id": 3,
       "title": "Create Facebook for dogs",
       "description": "The hottest new social network",
-      "status": "To Do",
-      "timer": 0
+      "status": "Completed",
+      "timer": 332,
+      "projectId": 1
     },
     {
-      "title": "oh",
-      "description": "lordy",
+      "title": "ooh",
+      "description": "hello",
       "status": "To Do",
       "id": 4
+    },
+    {
+      "title": "hello",
+      "description": "sailor",
+      "status": "To Do",
+      "id": 5
+    },
+    {
+      "projectId": 1,
+      "title": "ooh",
+      "description": "hello sailor",
+      "status": "In Progress",
+      "id": 6,
+      "timer": 6
+    },
+    {
+      "projectId": 2,
+      "title": "find",
+      "description": "itt",
+      "status": "In Progress",
+      "id": 7
+    },
+    {
+      "projectId": 1,
+      "title": "how",
+      "description": "come la?",
+      "status": "Completed",
+      "id": 8
+    },
+    {
+      "projectId": 2,
+      "title": "long",
+      "description": "one",
+      "status": "Completed",
+      "id": 9
+    },
+    {
+      "projectId": 1,
+      "title": "apply",
+      "description": "hsbc",
+      "status": "In Progress",
+      "id": 10,
+      "timer": 26
     }
   ]
 }
