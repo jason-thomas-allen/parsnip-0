@@ -4,7 +4,7 @@ import { TASK_STATUSES } from '../common';
 const Task = (props) => {
   const { task } = props;
   const onStatusChange = (e) => {
-    props.onStatusChange(task.id, e.target.value);
+    props.onStatusChange(task, e.target.value);
   };
 
   return (

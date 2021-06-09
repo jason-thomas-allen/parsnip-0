@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import tasksReducer from './reducers';
+import { projects, page, tasks } from './reducers';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -15,7 +15,9 @@ const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = (state = {}, action) => {
   return {
-    tasks: tasksReducer(state.tasks, action),
+    tasks: tasks(state.tasks, action),
+    projects: projects(state.projects, action),
+    page: page(state.page, action),
   };
 };
 
@@ -28,8 +30,8 @@ sagaMiddleware.run(rootSaga);
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {
-    const nextTasks = require('./reducers').default;
-    store.replaceReducer(nextTasks);
+    const nextRootReducer = require('./reducers').default;
+    store.replaceReducer(nextRootReducer);
   });
   module.hot.accept('./App', () => {
     const NextApp = require('./App').default;
